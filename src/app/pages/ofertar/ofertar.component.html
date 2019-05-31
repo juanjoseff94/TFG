@@ -1,0 +1,28 @@
+<div class="row" style="margin-top:40px; padding:20px; background-color:#eff0f2;border-radius:15px;
+-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
+
+    <div class="col-sm-12">
+        <form [formGroup]="ofertarForm">
+            <div class="form-group">
+                <label for="InputEmpresa">Empresa</label>
+                <input formControlName="empresa" type="text" class="form-control" id="InputEmpresa" aria-describedby="empresaHelp" placeholder="Nombre de empresa">
+                <small id="empresaHelp" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group">
+                <label for="InputPuesto">Puesto</label>
+                <input formControlName="puesto" type="text" class="form-control" id="InputPuesto" aria-describedby="puestoHelp" placeholder="Puesto de trabajo">
+                <small id="puestoHelp" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group">
+                <label for="InputSalario">Salario</label>
+                <input formControlName="salario" type="text" class="form-control" id="InputSalario" aria-describedby="salarioHelp" placeholder="Salario anual bruto">
+                <small id="salarioHelp" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group" style="text-align:center;">
+                <button type="button" class="btn btn-dark" (click)="ofertar()">Publicar Oferta</button>
+            </div>
+        </form>
+    </div>
+</div>
