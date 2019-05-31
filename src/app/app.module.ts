@@ -12,6 +12,8 @@ import { UserService } from './user.service';
 import { OfertarComponent } from './pages/ofertar/ofertar.component';
 import { OfertaService } from './oferta.service';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
+import { CvComponent } from './pages/cv/cv.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { OfertasComponent } from './pages/ofertas/ofertas.component';
     RegisterComponent,
     HomeComponent,
     OfertarComponent,
-    OfertasComponent
+    OfertasComponent,
+    CvComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { OfertasComponent } from './pages/ofertas/ofertas.component';
     FormsModule
   ],
   providers: [UserService,
-  OfertaService],
+  OfertaService,
+  DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
