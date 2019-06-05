@@ -34,24 +34,13 @@ export class OfertasComponent implements OnInit {
     );
   }
 
- /* private _getOfertas() {
-    // Get ofertas
-    this.ofertasListSub = this.api
-      .getEvents$()
-      .subscribe(
-        res => {
-          this.ofertasList = res;
-          this.filteredOfertas = res;
-        },
-        err => {
-          console.error(err);
-          this.error = true;
-        }
-      );
-  }*/
-
   usuario(data) {
     this.id = data._id;
+  }
+
+  test(id: any, idUser: any) {
+    console.log(id);
+    console.log(idUser);
   }
 
 
