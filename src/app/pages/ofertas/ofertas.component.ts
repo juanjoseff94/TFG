@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OfertaService } from 'src/app/oferta.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-ofertas',
@@ -14,16 +15,21 @@ export class OfertasComponent implements OnInit {
   id = '';
   puesto = '';
   salario = '';
-  data: string[];
+  datos: string[];
   ofertasListSub: Subscription;
   /*ofertasList: EventModel[];
   filteredOfertas: EventModel[];*/
   error: boolean;
   query: '';
-  constructor(private ofertas: OfertaService, private router: Router) {
+  constructor(private ofertas: OfertaService, private router: Router, private user: UserService) {
     this.ofertas.ofertas()
     .subscribe(
       data => this.results(data),
+      error => this.router.navigate(['/login'])
+    );
+    this.user.user()
+    .subscribe(
+      data => this.usuario(data),
       error => this.router.navigate(['/login'])
     );
   }
@@ -44,10 +50,14 @@ export class OfertasComponent implements OnInit {
       );
   }*/
 
-
+  usuario(data) {
+    this.id = data._id;
+  }
 
 
   results(data) {
+    this.datos = data;
+    console.log(this.datos);
   }
 
   ngOnInit() {

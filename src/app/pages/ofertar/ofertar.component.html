@@ -22,7 +22,7 @@ box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
             </div>
             <div class="form-group">
                 <label for="InputFecha">Fin de plazo</label>
-                <input formControlName="fechaFin" type="date" class="form-control" id="InputFecha" aria-describedby="fechaHelp" placeholder="Finalización de plazo">
+                <input formControlName="fechaFin" [(ngModel)]="fec" type="date" class="form-control" id="InputFecha" aria-describedby="fechaHelp" placeholder="Finalización de plazo">
                 <small id="fechaHelp" class="form-text text-muted"></small>
             </div>
             <div class="form-group" style="text-align:center;">

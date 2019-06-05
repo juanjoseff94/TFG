@@ -16,7 +16,7 @@ export class OfertaService {
   }
 
   ofertas() {
-    return this.http.get('http://127.0.0.1:3000/ofertas/oferta', {
+    return this.http.get('http://127.0.0.1:3000/ofertas/ofertas', {
       observe: 'body',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')

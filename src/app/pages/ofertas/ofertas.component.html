@@ -1,3 +1,10 @@
-<p>
-    ofertas works! {{data}}
-</p>
+<td>
+    <a *ngFor="let p of datos" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div>
+            <h5>{{ p.empresa }}</h5>
+            <li>Puesto: {{ p.puesto }}</li>
+            <li>Salario: {{ p.salario }}</li>
+            <li>Fecha final: {{ p.fechaFin }}</li>
+        </div>
+    </a>
+</td>

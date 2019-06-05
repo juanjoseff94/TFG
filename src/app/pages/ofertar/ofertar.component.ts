@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { OfertaService } from '../../oferta.service';
 import { UserService } from '../../user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-ofertar',
@@ -12,6 +13,8 @@ import { UserService } from '../../user.service';
 export class OfertarComponent implements OnInit {
 
   id = '';
+  fec: any;
+  fecha: any = new Date();
   ofertarForm: FormGroup = new FormGroup({
     idUser: new FormControl(null),
     empresa: new FormControl(null, Validators.required),
@@ -19,7 +22,7 @@ export class OfertarComponent implements OnInit {
     salario: new FormControl(null, Validators.required),
     fechaFin: new FormControl(null, Validators.required)
   });
-  constructor(private router: Router, private ofertaService: OfertaService, private user: UserService) {
+  constructor(private router: Router, private ofertaService: OfertaService, private user: UserService, private datePipe: DatePipe) {
     this.user.user()
     .subscribe(
       data => this.getId(data),
@@ -39,6 +42,8 @@ export class OfertarComponent implements OnInit {
       console.log('Invalid Form'); return;
     }
     this.ofertarForm.patchValue({idUser: this.id});
+    this.fecha = this.datePipe.transform(this.fec, 'yyyy-MM-dd');
+    this.ofertarForm.patchValue({fechaFin: this.fecha});
 
     this.ofertaService.ofertar(JSON.stringify(this.ofertarForm.value))
     .subscribe(
