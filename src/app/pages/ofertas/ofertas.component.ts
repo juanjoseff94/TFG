@@ -39,14 +39,20 @@ export class OfertasComponent implements OnInit {
   }
 
   test(id: any, idUser: any) {
-    console.log(id);
-    console.log(idUser);
+    if (window.confirm('¿Quieres inscribirte en esta oferta?')) {
+      console.log(id);
+      console.log(idUser);
+    }
+  }
+
+  referal(id: any, idUser: any) {
+      console.log(id);
+      console.log(idUser);
   }
 
 
   results(data) {
     this.datos = data;
-    console.log(this.datos);
   }
 
   ngOnInit() {
