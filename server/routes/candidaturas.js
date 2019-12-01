@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var Oferta = require('../models/oferta');
+var Candidatura = require('../models/candidatura');
 var passport = require('passport');
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('respond with a resource');
 // });
 
-router.post('/ofertar', function(req, res, next) {
+router.post('/apuntarse', function(req, res, next) {
     addToDB(req, res);
 });
 
-router.post('/buscarOfertas', function(req, res, next) {
+router.post('/buscarCandidaturas', function(req, res, next) {
     let query = {};
     query.word = new RegExp(req.body.word, 'i');
     word.find(query, function(error, resp) {
@@ -22,10 +22,10 @@ router.post('/buscarOfertas', function(req, res, next) {
     });
 });
 
-router.get('/ofertas', async(req, res) => {
+router.get('/candidaturas', async(req, res) => {
     try {
-        const oferta = await Oferta.find();
-        res.json(oferta);
+        const candidatura = await Candidatura.find();
+        res.json(candidatura);
     } catch (e) {
         console.log(e);
     }
@@ -35,16 +35,20 @@ router.get('/ofertas', async(req, res) => {
 
 async function addToDB(req, res) {
 
-    var oferta = new Oferta({
-        idUser: req.body.idUser,
+    var candidatura = new Candidatura({
+        idOferta: req.body.idOferta,
+        idCandidato: req.body.idCandidato,
+        nombreCandidato: req.body.nombreCandidato,
+        idReferal: req.body.idReferal,
         empresa: req.body.empresa,
         puesto: req.body.puesto,
         salario: req.body.salario,
-        fechaFin: req.body.fechaFin
+        fechaFin: req.body.fechaFin,
+        estado: req.body.estado
     });
 
     try {
-        doc = await oferta.save();
+        doc = await candidatura.save();
         return res.status(201).json(doc);
     } catch (err) {
         return res.status(501).json(err);

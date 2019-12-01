@@ -1,0 +1,12 @@
+<td>
+    <input [(ngModel)]="searchText" placeholder="Busqueda por idCandidato">
+    <a *ngFor="let p of datos| candidaturaFilter: id" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div>
+            <h5>{{ p.empresa }}</h5>
+            <li>Puesto: {{ p.puesto }}</li>
+            <li>Salario: {{ p.salario }}</li>
+            <li>Fecha final: {{ p.fechaFin }}</li>
+            <li>Estado: {{ p.estado }}</li>
+        </div>
+    </a>
+</td>

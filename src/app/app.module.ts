@@ -14,6 +14,10 @@ import { OfertaService } from './oferta.service';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
 import { CvComponent } from './pages/cv/cv.component';
 import { DatePipe } from '@angular/common';
+import { FilterPipe } from './filter.pipe';
+import { CandidaturaService } from './candidatura.service';
+import { CandidaturasComponent } from './pages/candidaturas/candidaturas.component';
+import { CandidaturaFilterPipe } from './candidatura-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { DatePipe } from '@angular/common';
     HomeComponent,
     OfertarComponent,
     OfertasComponent,
-    CvComponent
+    CvComponent,
+    FilterPipe,
+    CandidaturasComponent,
+    CandidaturaFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,8 @@ import { DatePipe } from '@angular/common';
   ],
   providers: [UserService,
   OfertaService,
-  DatePipe],
+  DatePipe,
+  CandidaturaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
