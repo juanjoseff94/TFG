@@ -6,7 +6,7 @@
             <li>Puesto: {{ p.puesto }}</li>
             <li>Salario: {{ p.salario }}</li>
             <li>Fecha final: {{ p.fechaFin }}</li>
-            <button (click)="test(p._id, id, p.empresa, p.puesto, p.salario, p.fechaFin)">Inscribirme en esta oferta</button>
+            <button (click)="test(p._id, id, p.idUser, p.empresa, p.puesto, p.salario, p.fechaFin)">Inscribirme en esta oferta</button>
             <button (click)="referal(p._id, p.idUser)">Referir candidato</button>
         </div>
     </a>

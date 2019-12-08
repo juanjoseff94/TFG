@@ -8,6 +8,7 @@ import { OfertarComponent } from './pages/ofertar/ofertar.component';
 import { CvComponent } from './pages/cv/cv.component';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
 import { CandidaturasComponent } from './pages/candidaturas/candidaturas.component';
+import { CandidatosComponent } from './pages/candidatos/candidatos.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login  ', pathMatch: 'full'},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'ofertar', component: OfertarComponent},
   {path: 'cv', component: CvComponent},
   {path: 'candidaturas', component: CandidaturasComponent},
-  {path: 'ofertas', component: OfertasComponent}
+  {path: 'ofertas', component: OfertasComponent},
+  {path: 'candidatos', component: CandidatosComponent}
 ];
 
 @NgModule({

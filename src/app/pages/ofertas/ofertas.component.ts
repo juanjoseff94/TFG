@@ -28,6 +28,7 @@ export class OfertasComponent implements OnInit {
 
   candidaturaForm: FormGroup = new FormGroup({
     idOferta: new FormControl(null),
+    idEmpresa: new FormControl(null),
     idCandidato: new FormControl(null),
     nombreCandidato: new FormControl(null),
     idReferal: new FormControl(null),
@@ -59,9 +60,10 @@ export class OfertasComponent implements OnInit {
     // console.log(this.nombre);
   }
 
-  test(id: any, idUser: any, empresaOf: any, puestoOf: any, salarioOf: any, fechaFinOf: any) {
+  test(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, salarioOf: any, fechaFinOf: any) {
     if (window.confirm('¿Quieres inscribirte en esta oferta?')) {
       this.candidaturaForm.patchValue({idOferta: id});
+      this.candidaturaForm.patchValue({idEmpresa: idEmpresaOf});
       this.candidaturaForm.patchValue({idCandidato: idUser});
       this.candidaturaForm.patchValue({nombreCandidato: this.nombre});
       this.candidaturaForm.patchValue({empresa: empresaOf});

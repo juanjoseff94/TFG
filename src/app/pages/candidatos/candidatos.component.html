@@ -1,8 +1,8 @@
 <td>
     <input [(ngModel)]="searchText" placeholder="Busqueda por empresa">
-    <a *ngFor="let p of datos| candidaturaFilter: id" class="list-group-item list-group-item-action flex-column align-items-start">
+    <a *ngFor="let p of datos| candidatosFilter: id" class="list-group-item list-group-item-action flex-column align-items-start">
         <div>
-            <h5>{{ p.empresa }}</h5>
+            <h5>{{ p.nombreCandidato }}</h5>
             <li>Puesto: {{ p.puesto }}</li>
             <li>Salario: {{ p.salario }}</li>
             <li>Fecha final: {{ p.fechaFin }}</li>

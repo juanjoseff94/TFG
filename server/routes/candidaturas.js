@@ -37,6 +37,7 @@ async function addToDB(req, res) {
 
     var candidatura = new Candidatura({
         idOferta: req.body.idOferta,
+        idEmpresa: req.body.idEmpresa,
         idCandidato: req.body.idCandidato,
         nombreCandidato: req.body.nombreCandidato,
         idReferal: req.body.idReferal,

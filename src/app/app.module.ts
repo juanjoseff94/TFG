@@ -18,6 +18,8 @@ import { FilterPipe } from './filter.pipe';
 import { CandidaturaService } from './candidatura.service';
 import { CandidaturasComponent } from './pages/candidaturas/candidaturas.component';
 import { CandidaturaFilterPipe } from './candidatura-filter.pipe';
+import { CandidatosComponent } from './pages/candidatos/candidatos.component';
+import { CandidatosFilterPipe } from './candidatos-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CandidaturaFilterPipe } from './candidatura-filter.pipe';
     CvComponent,
     FilterPipe,
     CandidaturasComponent,
-    CandidaturaFilterPipe
+    CandidaturaFilterPipe,
+    CandidatosComponent,
+    CandidatosFilterPipe
   ],
   imports: [
     BrowserModule,
