@@ -6,6 +6,7 @@ import { UserService } from 'src/app/user.service';
 import { CandidaturaService } from 'src/app/candidatura.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ACTIVE_INDEX } from '@angular/core/src/render3/interfaces/container';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-candidatos',
@@ -21,11 +22,12 @@ export class CandidatosComponent implements OnInit {
   idCandidato: '';
   test = '5cee7d6da72c1a38587e36b0';
   candidaturas: any[];
+  estado = 'pendiente';
 
   candidaturaForm: FormGroup = new FormGroup({
     idOferta: new FormControl(null),
     idCandidato: new FormControl(null),
-    nombreCandidato: new FormControl(null)
+    estado: new FormControl(null)
   });
 
   constructor(private ofertas: OfertaService, private router: Router, private user: UserService,
@@ -44,6 +46,34 @@ results(data) {
   // console.log(this.id);
   this.datos = data;
 }
+
+aceptar(idO, idC) {
+  console.log(idO);
+  this.estado = 'Aceptado';
+  this.candidaturaForm.patchValue({idOferta: idO});
+  this.candidaturaForm.patchValue({idCandidato: idC});
+  this.candidaturaForm.patchValue({estado: this.estado});
+  this.candidaturaServ.aceptarCandidaturas(JSON.stringify(this.candidaturaForm.value))
+    .subscribe(
+      data => {console.log(data); window.location.reload(); },
+      error => console.error(error)
+    );
+}
+
+rechazar(idO, idC) {
+  console.log(idO);
+  this.estado = 'Rechazado';
+  this.candidaturaForm.patchValue({idOferta: idO});
+  this.candidaturaForm.patchValue({idCandidato: idC});
+  this.candidaturaForm.patchValue({estado: this.estado});
+  this.candidaturaServ.aceptarCandidaturas(JSON.stringify(this.candidaturaForm.value))
+    .subscribe(
+      data => {console.log(data); window.location.reload(); },
+      error => console.error(error)
+    );
+}
+
+
   ngOnInit() {
 
 this.user.user()

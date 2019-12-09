@@ -29,9 +29,36 @@ router.get('/candidaturas', async(req, res) => {
     } catch (e) {
         console.log(e);
     }
-
 });
 
+router.post('/aceptarCandidatura', function(req, res, next) {
+    aceptarCand(req, res);
+});
+
+async function aceptarCand(req, res) {
+    try {
+        console.log(req.body.idOferta);
+        console.log(req.body.estado);
+        /*var candidatura = new Candidatura();
+        doc = await candidatura.update({ idOferta: req.body.idOferta }, { $set: { estado: req.body.estado } });
+        return res.status(201).json(doc);*/
+        Candidatura.findOne({
+                idOferta: req.body.idOferta
+            })
+            .then((candidatura) => {
+                candidatura.estado = req.body.estado;
+                candidatura
+                    .save()
+                    .then(() => {
+                        res.jsonp({ candidatura }); // enviamos la boleta de vuelta
+                    });
+            });
+    } catch (err) {
+        return res.status(501).json(err);
+    }
+
+
+}
 
 async function addToDB(req, res) {
 

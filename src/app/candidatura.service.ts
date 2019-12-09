@@ -22,4 +22,12 @@ export class CandidaturaService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+
+  aceptarCandidaturas(body: any) {
+    console.log(body);
+    return this.http.post('http://127.0.0.1:3000/candidaturas/aceptarCandidatura', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 }
