@@ -11,9 +11,19 @@ router.post('/cvs', function(req, res, next) {
     addToDB(req, res);
 });
 
+router.get('/getCvs', async(req, res) => {
+    try {
+        const cv = await Cv.find();
+        res.json(cv);
+    } catch (e) {
+        console.log(e);
+    }
+
+});
+
 async function addToDB(req, res) {
 
-    var oferta = new Cv({
+    var cv = new Cv({
         idUser: req.body.idUser,
         nombre: req.body.nombre,
         puestoActual: req.body.puestoActual,
@@ -22,7 +32,7 @@ async function addToDB(req, res) {
     });
 
     try {
-        doc = await oferta.save();
+        doc = await cv.save();
         return res.status(201).json(doc);
     } catch (err) {
         return res.status(501).json(err);

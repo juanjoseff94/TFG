@@ -14,4 +14,12 @@ export class CvService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+
+  getCvs() {
+    return this.http.get('http://127.0.0.1:3000/cvs/getCvs', {
+      observe: 'body',
+      withCredentials: true,
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 }

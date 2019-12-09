@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/user.service';
 import { CandidaturaService } from 'src/app/candidatura.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ReferirService } from 'src/app/referir.service';
 
 @Component({
   selector: 'app-ofertas',
@@ -40,7 +41,7 @@ export class OfertasComponent implements OnInit {
   });
 
   constructor(private ofertas: OfertaService, private router: Router, private user: UserService,
-              private candidaturaServ: CandidaturaService) {
+              private candidaturaServ: CandidaturaService, private referalService: ReferirService) {
     this.ofertas.ofertas()
     .subscribe(
       data => this.results(data),
@@ -60,7 +61,7 @@ export class OfertasComponent implements OnInit {
     // console.log(this.nombre);
   }
 
-  test(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, salarioOf: any, fechaFinOf: any) {
+  apuntarse(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, salarioOf: any, fechaFinOf: any) {
     if (window.confirm('¿Quieres inscribirte en esta oferta?')) {
       this.candidaturaForm.patchValue({idOferta: id});
       this.candidaturaForm.patchValue({idEmpresa: idEmpresaOf});
@@ -81,9 +82,22 @@ export class OfertasComponent implements OnInit {
     }
   }
 
-  referal(id: any, idUser: any) {
-      console.log(id);
-      console.log(idUser);
+  referal(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, salarioOf: any, fechaFinOf: any) {
+    if (window.confirm('¿Quieres inscribirte en esta oferta?')) {
+      this.candidaturaForm.patchValue({idOferta: id});
+      this.candidaturaForm.patchValue({idEmpresa: idEmpresaOf});
+      this.candidaturaForm.patchValue({idCandidato: this.idReferalOf});
+      this.candidaturaForm.patchValue({nombreCandidato: this.nombre});
+      this.candidaturaForm.patchValue({empresa: empresaOf});
+      this.candidaturaForm.patchValue({puesto: puestoOf});
+      this.candidaturaForm.patchValue({salario: salarioOf});
+      this.candidaturaForm.patchValue({fechaFin: fechaFinOf});
+      this.candidaturaForm.patchValue({idReferal: idUser});
+      this.candidaturaForm.patchValue({estado: this.estadoOf});
+
+      this.referalService.referirCand(this.candidaturaForm);
+      this.router.navigate(['cv-referals']);
+    }
   }
 
 

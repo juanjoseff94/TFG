@@ -20,6 +20,7 @@ import { CandidaturasComponent } from './pages/candidaturas/candidaturas.compone
 import { CandidaturaFilterPipe } from './candidatura-filter.pipe';
 import { CandidatosComponent } from './pages/candidatos/candidatos.component';
 import { CandidatosFilterPipe } from './candidatos-filter.pipe';
+import { CvReferalsComponent } from './pages/cv-referals/cv-referals.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CandidatosFilterPipe } from './candidatos-filter.pipe';
     CandidaturasComponent,
     CandidaturaFilterPipe,
     CandidatosComponent,
-    CandidatosFilterPipe
+    CandidatosFilterPipe,
+    CvReferalsComponent
   ],
   imports: [
     BrowserModule,

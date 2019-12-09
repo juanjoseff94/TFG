@@ -9,6 +9,7 @@ import { CvComponent } from './pages/cv/cv.component';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
 import { CandidaturasComponent } from './pages/candidaturas/candidaturas.component';
 import { CandidatosComponent } from './pages/candidatos/candidatos.component';
+import { CvReferalsComponent } from './pages/cv-referals/cv-referals.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login  ', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'cv', component: CvComponent},
   {path: 'candidaturas', component: CandidaturasComponent},
   {path: 'ofertas', component: OfertasComponent},
-  {path: 'candidatos', component: CandidatosComponent}
+  {path: 'candidatos', component: CandidatosComponent},
+  {path: 'cv-referals', component: CvReferalsComponent}
 ];
 
 @NgModule({
