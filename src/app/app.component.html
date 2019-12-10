@@ -1,37 +1,37 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Talent Referals</a>
+    <a class="navbar-brand" href="/home">Talent Referals</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
   </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/register']" routerLinkActive="active">Register
+                <a *ngIf="logged" class="nav-link" [routerLink]="['/register']" routerLinkActive="active">Register
                   <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+                <a *ngIf="logged" class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home</a>
+                <a *ngIf="emp || usu || adm" class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/ofertar']" routerLinkActive="active">Crear Oferta</a>
+                <a *ngIf="emp || adm" class="nav-link" [routerLink]="['/ofertar']" routerLinkActive="active">Crear Oferta</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/ofertas']" routerLinkActive="active">Buscar Ofertas</a>
+                <a *ngIf="usu || adm" class="nav-link" [routerLink]="['/ofertas']" routerLinkActive="active">Buscar Ofertas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/cv']" routerLinkActive="active">Crear CV</a>
+                <a *ngIf="usu || adm" class="nav-link" [routerLink]="['/cv']" routerLinkActive="active">Crear CV</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/candidaturas']" routerLinkActive="active">Mis Candidaturas</a>
+                <a *ngIf="usu || adm" class="nav-link" [routerLink]="['/candidaturas']" routerLinkActive="active">Mis Candidaturas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/candidatos']" routerLinkActive="active">Candidatos</a>
+                <a *ngIf="emp || adm" class="nav-link" [routerLink]="['/candidatos']" routerLinkActive="active">Candidatos</a>
             </li>
         </ul>
     </div>

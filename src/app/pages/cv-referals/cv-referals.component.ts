@@ -4,6 +4,7 @@ import { CandidaturaService } from '../../candidatura.service';
 import { FormGroup, FormControl   } from '@angular/forms';
 import { CvService } from '../../cv.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/user.service';
 
 
 @Component({
@@ -27,26 +28,33 @@ export class CvReferalsComponent implements OnInit {
   });
 
   datos: any[];
+  validado: boolean;
 
   constructor(private referalServ: ReferirService, private candidaturaServ: CandidaturaService, private cvServ: CvService, 
-              private router: Router) {
+              private router: Router, private user: UserService) {
 
     this.cvServ.getCvs()
     .subscribe(
       data => this.cvResults(data),
       error => this.router.navigate(['/login'])
     );
+
+    this.user.user()
+    .subscribe(
+      data => this.usuario(data),
+      error => this.router.navigate(['/login'])
+    );
   }
 
   ngOnInit() {
     this.referalCandForm = this.referalServ.referalForm;
-    console.log(this.referalCandForm);
+    // console.log(this.referalCandForm);
   }
 
   elegirCandidato(idCand: any, nombreCand: any) {
     this.referalCandForm.patchValue({idCandidato: idCand});
     this.referalCandForm.patchValue({nombreCandidato: nombreCand});
-    console.log(this.referalCandForm);
+    // console.log(this.referalCandForm);
 
     this.candidaturaServ.apuntarse(JSON.stringify(this.referalCandForm.value))
     .subscribe(
@@ -57,6 +65,16 @@ export class CvReferalsComponent implements OnInit {
 
   cvResults(data) {
     this.datos = data;
+  }
+
+  usuario(data) {
+    this.validado = false;
+    if (data.role === 'usuario'  || data.role === 'admin') {
+      this.validado = true;
+  }
+    if (!this.validado) {
+      this.router.navigate(['/home']);
+    }
   }
 
 }

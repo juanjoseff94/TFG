@@ -23,6 +23,7 @@ export class CandidatosComponent implements OnInit {
   test = '5cee7d6da72c1a38587e36b0';
   candidaturas: any[];
   estado = 'pendiente';
+  validado: boolean;
 
   candidaturaForm: FormGroup = new FormGroup({
     idOferta: new FormControl(null),
@@ -40,6 +41,13 @@ export class CandidatosComponent implements OnInit {
 usuario(data) {
 this.id = data._id;
 this.nombre = data.username;
+this.validado = false;
+if (data.role === 'empresa'  || data.role === 'admin') {
+  this.validado = true;
+}
+if (!this.validado) {
+  this.router.navigate(['/home']);
+}
 }
 results(data) {
   // console.log(data.idCandidato);

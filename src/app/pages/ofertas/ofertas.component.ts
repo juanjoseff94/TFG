@@ -26,6 +26,7 @@ export class OfertasComponent implements OnInit {
   error: boolean;
   idReferalOf = '';
   estadoOf = 'Pendiente';
+  validado: boolean;
 
   candidaturaForm: FormGroup = new FormGroup({
     idOferta: new FormControl(null),
@@ -57,8 +58,13 @@ export class OfertasComponent implements OnInit {
   usuario(data) {
     this.id = data._id;
     this.nombre = data.username;
-    // console.log(this.id);
-    // console.log(this.nombre);
+    this.validado = false;
+    if (data.role === 'usuario'  || data.role === 'admin') {
+      this.validado = true;
+  }
+    if (!this.validado) {
+      this.router.navigate(['/home']);
+    }
   }
 
   apuntarse(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, salarioOf: any, fechaFinOf: any) {

@@ -12,6 +12,7 @@ import { CvService } from '../../cv.service';
 export class CvComponent implements OnInit {
 
   id = '';
+  validado: boolean;
   ofertarForm: FormGroup = new FormGroup({
     idUser: new FormControl(null),
     nombre: new FormControl(null, Validators.required),
@@ -29,6 +30,13 @@ export class CvComponent implements OnInit {
 
   getId(data) {
     this.id = data._id;
+    this.validado = false;
+    if (data.role === 'usuario'  || data.role === 'admin') {
+      this.validado = true;
+  }
+    if (!this.validado) {
+      this.router.navigate(['/home']);
+    }
   }
 
   ngOnInit() {

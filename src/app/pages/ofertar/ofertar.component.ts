@@ -15,6 +15,7 @@ export class OfertarComponent implements OnInit {
   id = '';
   fec: any;
   fecha: any = new Date();
+  validado: boolean;
   ofertarForm: FormGroup = new FormGroup({
     idUser: new FormControl(null),
     empresa: new FormControl(null, Validators.required),
@@ -32,6 +33,13 @@ export class OfertarComponent implements OnInit {
 
   getId(data) {
     this.id = data._id;
+    this.validado = false;
+    if (data.role === 'empresa'  || data.role === 'admin') {
+      this.validado = true;
+  }
+    if (!this.validado) {
+      this.router.navigate(['/home']);
+    }
   }
 
   ngOnInit() {

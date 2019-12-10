@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
     // console.log(JSON.stringify(this.loginForm.value));
     this.user.login(JSON.stringify(this.loginForm.value))
     .subscribe(
-      data => {console.log(data); this.router.navigate(['/home']); } ,
+      data => {console.log(data); this.router.navigate(['/home']).then(() => {
+        window.location.reload();
+      }); } ,
       error => console.error(error)
     );
   }

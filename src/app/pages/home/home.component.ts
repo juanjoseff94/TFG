@@ -30,7 +30,9 @@ export class HomeComponent implements OnInit {
   logout() {
     this.user.logout()
     .subscribe(
-      data => {console.log(data); this.router.navigate(['/login']); },
+      data => {console.log(data); this.router.navigate(['/login']).then(() => {
+        window.location.reload();
+      }); },
       error => console.error(error)
     );
   }
