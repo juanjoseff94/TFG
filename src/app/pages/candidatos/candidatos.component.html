@@ -7,7 +7,7 @@
             <li>Salario: {{ p.salario }}</li>
             <li>Fecha final: {{ p.fechaFin }}</li>
             <li>Estado: {{ p.estado }}</li>
-            <button (click)="aceptar(p.idOferta, p.idCandidato)">Aceptar candidato</button>
+            <button (click)="aceptar(p.idOferta, p.idCandidato, p.idReferal)">Aceptar candidato</button>
             <button (click)="rechazar(p.idOferta, p.idCandidato)">Rechazar candidato</button>
         </div>
     </a>

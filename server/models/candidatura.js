@@ -11,6 +11,7 @@ var schema = new Schema({
     empresa: { type: String, require: false },
     puesto: { type: String, require: false },
     salario: { type: String, require: false },
+    referalValue: { type: Number, require: false },
     fechaFin: { type: String, require: false },
     estado: { type: String, require: false }
 });

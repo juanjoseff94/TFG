@@ -15,8 +15,15 @@ export class RegisterComponent implements OnInit {
     username: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
     role: new FormControl(null, Validators.required),
+    referalValue: new FormControl(null),
     cpass: new FormControl(null, Validators.required)
   });
+
+  roles = [
+    {id: 1, name: 'usuario'},
+    {id: 2, name: 'empresa'}
+  ];
+  selectedValue = null;
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
@@ -30,7 +37,7 @@ export class RegisterComponent implements OnInit {
     if (!this.registerForm.valid || (this.registerForm.controls.password.value !== this.registerForm.controls.cpass.value)) {
       console.log('Invalid Form'); return;
     }
-
+    this.registerForm.patchValue({referalValue: 0});
     this.userService.register(JSON.stringify(this.registerForm.value))
     .subscribe(
       data => {console.log(data); this.router.navigate(['/login']); },

@@ -56,7 +56,7 @@ export class OfertasComponent implements OnInit {
   }
 
   usuario(data) {
-    this.id = data._id;
+    this.id = data.email;
     this.nombre = data.username;
     this.validado = false;
     if (data.role === 'usuario'  || data.role === 'admin') {

@@ -18,6 +18,7 @@ async function addToDB(req, res) {
         email: req.body.email,
         username: req.body.username,
         role: req.body.role,
+        referalValue: req.body.referalValue,
         password: User.hashPassword(req.body.password),
         creation_dt: Date.now()
     });
@@ -30,6 +31,32 @@ async function addToDB(req, res) {
     }
 }
 
+router.post('/valorarReferal', function(req, res, next) {
+    valorarRef(req, res);
+});
+
+async function valorarRef(req, res) {
+    try {
+        console.log('test');
+        console.log(req.body.referalValue);
+        // console.log(req.body.email);
+        User.findOne({
+                email: req.body.referalValue
+            })
+            .then((user) => {
+                user.referalValue = user.referalValue + 1;
+                user
+                    .save()
+                    .then(() => {
+                        res.jsonp({ user }); // enviamos la boleta de vuelta
+                    });
+            });
+    } catch (err) {
+        return res.status(501).json(err);
+    }
+
+
+}
 
 router.post('/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {

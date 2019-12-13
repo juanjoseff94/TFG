@@ -24,11 +24,16 @@ export class CandidatosComponent implements OnInit {
   candidaturas: any[];
   estado = 'pendiente';
   validado: boolean;
+  email = 'admin@admin.com';
 
   candidaturaForm: FormGroup = new FormGroup({
     idOferta: new FormControl(null),
     idCandidato: new FormControl(null),
     estado: new FormControl(null)
+  });
+
+  referalForm: FormGroup = new FormGroup({
+    referalValue: new FormControl(null)
   });
 
   constructor(private ofertas: OfertaService, private router: Router, private user: UserService,
@@ -55,15 +60,24 @@ results(data) {
   this.datos = data;
 }
 
-aceptar(idO, idC) {
-  console.log(idO);
+aceptar(idO, idC, idRef) {
+  if (idRef) {
+    console.log(idRef);
+    idRef = 'email@email.com';
+    this.referalForm.patchValue({referalValue: this.email});
+    this.user.valorarReferal(JSON.stringify(this.referalForm.value))
+    .subscribe(
+      data => {console.log(data); /*window.location.reload();*/ },
+      error => console.error(error)
+    );
+  }
   this.estado = 'Aceptado';
   this.candidaturaForm.patchValue({idOferta: idO});
   this.candidaturaForm.patchValue({idCandidato: idC});
   this.candidaturaForm.patchValue({estado: this.estado});
   this.candidaturaServ.aceptarCandidaturas(JSON.stringify(this.candidaturaForm.value))
     .subscribe(
-      data => {console.log(data); window.location.reload(); },
+      data => {console.log(data); /*window.location.reload();*/ },
       error => console.error(error)
     );
 }

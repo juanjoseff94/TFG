@@ -7,6 +7,7 @@ var schema = new Schema({
     username: { type: String, require: true },
     password: { type: String, require: true },
     role: { type: String, require: true },
+    referalValue: { type: Number, require: false },
     creation_dt: { type: Date, require: true }
 });
 

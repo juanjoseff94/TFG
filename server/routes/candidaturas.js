@@ -71,6 +71,7 @@ async function addToDB(req, res) {
         empresa: req.body.empresa,
         puesto: req.body.puesto,
         salario: req.body.salario,
+        referalValue: req.body.referalValue,
         fechaFin: req.body.fechaFin,
         estado: req.body.estado
     });

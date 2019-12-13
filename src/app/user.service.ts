@@ -37,4 +37,12 @@ export class UserService {
     });
   }
 
+  valorarReferal(body: any) {
+    console.log(body);
+    return this.http.post('http://127.0.0.1:3000/users/valorarReferal', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
 }
