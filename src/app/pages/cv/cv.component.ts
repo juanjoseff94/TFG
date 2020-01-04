@@ -17,6 +17,7 @@ export class CvComponent implements OnInit {
     idUser: new FormControl(null),
     nombre: new FormControl(null, Validators.required),
     puestoActual: new FormControl(null, Validators.required),
+    descripcion: new FormControl(null, Validators.required),
     skills: new FormControl(null, Validators.required),
     experiencia: new FormControl(null, Validators.required)
   });

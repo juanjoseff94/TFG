@@ -8,6 +8,7 @@ var schema = new Schema({
     idCandidato: { type: String, require: true },
     nombreCandidato: { type: String, require: true },
     idReferal: { type: String, require: false },
+    descripcion: { type: String, require: false },
     empresa: { type: String, require: false },
     puesto: { type: String, require: false },
     salario: { type: String, require: false },

@@ -27,6 +27,7 @@ async function addToDB(req, res) {
         idUser: req.body.idUser,
         nombre: req.body.nombre,
         puestoActual: req.body.puestoActual,
+        descripcion: req.body.descripcion,
         skills: req.body.skills,
         experiencia: req.body.experiencia
     });

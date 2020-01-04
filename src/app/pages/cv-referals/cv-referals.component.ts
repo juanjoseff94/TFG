@@ -21,6 +21,7 @@ export class CvReferalsComponent implements OnInit {
     nombreCandidato: new FormControl(null),
     idReferal: new FormControl(null),
     referalValue: new FormControl(null),
+    descripcion: new FormControl(null),
     empresa: new FormControl(null),
     puesto: new FormControl(null),
     salario: new FormControl(null),

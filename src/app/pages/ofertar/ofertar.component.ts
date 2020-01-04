@@ -21,6 +21,7 @@ export class OfertarComponent implements OnInit {
     empresa: new FormControl(null, Validators.required),
     puesto: new FormControl(null, Validators.required),
     salario: new FormControl(null, Validators.required),
+    descripcion: new FormControl(null, Validators.required),
     fechaFin: new FormControl(null, Validators.required)
   });
   constructor(private router: Router, private ofertaService: OfertaService, private user: UserService, private datePipe: DatePipe) {
@@ -52,6 +53,7 @@ export class OfertarComponent implements OnInit {
     this.ofertarForm.patchValue({idUser: this.id});
     this.fecha = this.datePipe.transform(this.fec, 'yyyy-MM-dd');
     this.ofertarForm.patchValue({fechaFin: this.fecha});
+    console.log(this.ofertarForm);
 
     this.ofertaService.ofertar(JSON.stringify(this.ofertarForm.value))
     .subscribe(

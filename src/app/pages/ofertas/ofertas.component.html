@@ -1,13 +1,14 @@
 <td>
     <input [(ngModel)]="searchText" placeholder="Busqueda por puesto">
     <a *ngFor="let p of datos | filter: searchText" class="list-group-item list-group-item-action flex-column align-items-start">
-        <div>
+        <div class="jumbotron">
             <h5>{{ p.empresa }}</h5>
             <li>Puesto: {{ p.puesto }}</li>
             <li>Salario: {{ p.salario }}</li>
             <li>Fecha final: {{ p.fechaFin }}</li>
-            <button (click)="apuntarse(p._id, id, p.idUser, p.empresa, p.puesto, p.salario, p.fechaFin)">Inscribirme en esta oferta</button>
-            <button (click)="referal(p._id, id, p.idUser, p.empresa, p.puesto, p.salario, p.fechaFin)">Referir candidato</button>
+            <li>Descripcion: {{ p.descripcion }}</li>
+            <button (click)="apuntarse(p._id, id, p.idUser, p.empresa, p.puesto, p.salario, p.fechaFin, p.descripcion)">Inscribirme en esta oferta</button>
+            <button (click)="referal(p._id, id, p.idUser, p.empresa, p.puesto, p.salario, p.fechaFin, p.descripcion)">Referir candidato</button>
         </div>
     </a>
 </td>

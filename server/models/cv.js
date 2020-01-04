@@ -6,6 +6,7 @@ var schema = new Schema({
     idUser: { type: String, require: true },
     nombre: { type: String, require: true },
     puestoActual: { type: String, require: true },
+    descripcion: { type: String, require: false },
     skills: { type: String, require: true },
     experiencia: { type: String, require: true }
 });

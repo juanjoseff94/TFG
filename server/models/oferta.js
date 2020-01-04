@@ -6,6 +6,7 @@ var schema = new Schema({
     idUser: { type: String, require: true },
     empresa: { type: String, require: true },
     puesto: { type: String, require: true },
+    descripcion: { type: String, require: false },
     salario: { type: String, require: true },
     fechaFin: { type: String, require: true }
 });

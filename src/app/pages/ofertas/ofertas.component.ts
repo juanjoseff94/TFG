@@ -34,6 +34,7 @@ export class OfertasComponent implements OnInit {
     idCandidato: new FormControl(null),
     nombreCandidato: new FormControl(null),
     idReferal: new FormControl(null),
+    descripcion: new FormControl(null),
     empresa: new FormControl(null),
     puesto: new FormControl(null),
     salario: new FormControl(null),
@@ -67,13 +68,15 @@ export class OfertasComponent implements OnInit {
     }
   }
 
-  apuntarse(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, salarioOf: any, fechaFinOf: any) {
+  apuntarse(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, 
+            salarioOf: any, fechaFinOf: any, descripcionOf: any) {
     if (window.confirm('¿Quieres inscribirte en esta oferta?')) {
       this.candidaturaForm.patchValue({idOferta: id});
       this.candidaturaForm.patchValue({idEmpresa: idEmpresaOf});
       this.candidaturaForm.patchValue({idCandidato: idUser});
       this.candidaturaForm.patchValue({nombreCandidato: this.nombre});
       this.candidaturaForm.patchValue({empresa: empresaOf});
+      this.candidaturaForm.patchValue({descripcion: descripcionOf});
       this.candidaturaForm.patchValue({puesto: puestoOf});
       this.candidaturaForm.patchValue({salario: salarioOf});
       this.candidaturaForm.patchValue({fechaFin: fechaFinOf});
@@ -88,14 +91,16 @@ export class OfertasComponent implements OnInit {
     }
   }
 
-  referal(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, salarioOf: any, fechaFinOf: any) {
-    if (window.confirm('¿Quieres inscribirte en esta oferta?')) {
+  referal(id: any, idUser: any, idEmpresaOf: any, empresaOf: any, puestoOf: any, 
+          salarioOf: any, fechaFinOf: any, descripcionOf: any) {
+    if (window.confirm('¿Quieres referir a un candidato para esta oferta?')) {
       this.candidaturaForm.patchValue({idOferta: id});
       this.candidaturaForm.patchValue({idEmpresa: idEmpresaOf});
       this.candidaturaForm.patchValue({idCandidato: this.idReferalOf});
       this.candidaturaForm.patchValue({nombreCandidato: this.nombre});
       this.candidaturaForm.patchValue({empresa: empresaOf});
       this.candidaturaForm.patchValue({puesto: puestoOf});
+      this.candidaturaForm.patchValue({descripcion: descripcionOf});
       this.candidaturaForm.patchValue({salario: salarioOf});
       this.candidaturaForm.patchValue({fechaFin: fechaFinOf});
       this.candidaturaForm.patchValue({idReferal: idUser});

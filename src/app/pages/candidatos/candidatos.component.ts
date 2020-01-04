@@ -77,7 +77,7 @@ aceptar(idO, idC, idRef) {
   this.candidaturaForm.patchValue({estado: this.estado});
   this.candidaturaServ.aceptarCandidaturas(JSON.stringify(this.candidaturaForm.value))
     .subscribe(
-      data => {console.log(data); /*window.location.reload();*/ },
+      data => {console.log(data); window.location.reload(); },
       error => console.error(error)
     );
 }

@@ -40,6 +40,7 @@ async function addToDB(req, res) {
         empresa: req.body.empresa,
         puesto: req.body.puesto,
         salario: req.body.salario,
+        descripcion: req.body.descripcion,
         fechaFin: req.body.fechaFin
     });
 

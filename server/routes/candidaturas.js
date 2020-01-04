@@ -69,6 +69,7 @@ async function addToDB(req, res) {
         nombreCandidato: req.body.nombreCandidato,
         idReferal: req.body.idReferal,
         empresa: req.body.empresa,
+        descripcion: req.body.descripcion,
         puesto: req.body.puesto,
         salario: req.body.salario,
         referalValue: req.body.referalValue,
