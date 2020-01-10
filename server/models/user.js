@@ -8,6 +8,8 @@ var schema = new Schema({
     password: { type: String, require: true },
     role: { type: String, require: true },
     referalValue: { type: Number, require: false },
+    referalsAceptados: { type: Number, require: false },
+    referalCount: { type: Number, require: false },
     creation_dt: { type: Date, require: true }
 });
 

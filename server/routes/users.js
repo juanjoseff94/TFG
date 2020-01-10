@@ -35,16 +35,52 @@ router.post('/valorarReferal', function(req, res, next) {
     valorarRef(req, res);
 });
 
+router.post('/contadorReferal', function(req, res, next) {
+    contadorRef(req, res);
+});
+
 async function valorarRef(req, res) {
     try {
         console.log('test');
         console.log(req.body.referalValue);
+        console.log(req.body.email);
         // console.log(req.body.email);
         User.findOne({
-                email: req.body.referalValue
+                email: req.body.email
             })
             .then((user) => {
-                user.referalValue = user.referalValue + 1;
+                user.referalsAceptados = user.referalsAceptados + 1;
+                user.referalValue = (user.referalsAceptados / user.referalCount) * 100;
+                console.log(referalValue);
+                user
+                    .save()
+                    .then(() => {
+                        res.jsonp({ user }); // enviamos la boleta de vuelta
+                    });
+            });
+    } catch (err) {
+        return res.status(501).json(err);
+    }
+
+
+}
+
+async function contadorRef(req, res) {
+    try {
+        console.log('test');
+        console.log(req.body.referalCount);
+        console.log(req.body.email);
+        // console.log(req.body.email);
+        User.findOne({
+                email: req.body.email
+            })
+            .then((user) => {
+                user.referalCount = user.referalCount + 1;
+                user.referalValue = (user.referalsAceptados / user.referalCount) * 105;
+                if (user.referalValue > 100) {
+                    user.referalValue = 100;
+                }
+                console.log(user.referalValue);
                 user
                     .save()
                     .then(() => {

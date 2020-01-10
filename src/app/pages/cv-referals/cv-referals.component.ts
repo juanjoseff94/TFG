@@ -29,9 +29,14 @@ export class CvReferalsComponent implements OnInit {
     estado: new FormControl(null)
   });
 
+  referalForm: FormGroup = new FormGroup({
+    email: new FormControl(null)
+  });
+
   datos: any[];
   validado: boolean;
   referal: string;
+  email = '';
 
   constructor(private referalServ: ReferirService, private candidaturaServ: CandidaturaService, private cvServ: CvService,
               private router: Router, private user: UserService) {
@@ -62,6 +67,13 @@ export class CvReferalsComponent implements OnInit {
     // this.referalCandForm.patchValue({referalValue: this.referal});
     // console.log(this.referalCandForm);
 
+    this.referalForm.patchValue({email: this.email});
+    this.user.contadorReferal(JSON.stringify(this.referalForm.value))
+    .subscribe(
+      data => {console.log(data); /*window.location.reload();*/ },
+      error => console.error(error)
+    );
+
     this.candidaturaServ.apuntarse(JSON.stringify(this.referalCandForm.value))
     .subscribe(
       data => {console.log(data); this.router.navigate(['/home']); },
@@ -75,6 +87,7 @@ export class CvReferalsComponent implements OnInit {
 
   usuario(data) {
     this.referal = data.email;
+    this.email = data.email;
     this.validado = false;
     if (data.role === 'usuario'  || data.role === 'admin') {
       this.validado = true;

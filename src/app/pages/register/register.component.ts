@@ -16,6 +16,8 @@ export class RegisterComponent implements OnInit {
     password: new FormControl(null, Validators.required),
     role: new FormControl(null, Validators.required),
     referalValue: new FormControl(null),
+    referalCount: new FormControl(null),
+    referalsAceptados: new FormControl(null),
     cpass: new FormControl(null, Validators.required)
   });
 
@@ -38,6 +40,8 @@ export class RegisterComponent implements OnInit {
       console.log('Invalid Form'); return;
     }
     this.registerForm.patchValue({referalValue: 0});
+    this.registerForm.patchValue({referalCount: 0});
+    this.registerForm.patchValue({referalsAceptados: 0});
     this.userService.register(JSON.stringify(this.registerForm.value))
     .subscribe(
       data => {console.log(data); this.router.navigate(['/login']); },

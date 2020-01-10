@@ -24,7 +24,7 @@ export class CandidatosComponent implements OnInit {
   candidaturas: any[];
   estado = 'pendiente';
   validado: boolean;
-  email = 'admin@admin.com';
+  email = '';
 
   candidaturaForm: FormGroup = new FormGroup({
     idOferta: new FormControl(null),
@@ -33,7 +33,7 @@ export class CandidatosComponent implements OnInit {
   });
 
   referalForm: FormGroup = new FormGroup({
-    referalValue: new FormControl(null)
+    email: new FormControl(null)
   });
 
   constructor(private ofertas: OfertaService, private router: Router, private user: UserService,
@@ -46,6 +46,7 @@ export class CandidatosComponent implements OnInit {
 usuario(data) {
 this.id = data._id;
 this.nombre = data.username;
+this.email = data.email;
 this.validado = false;
 if (data.role === 'empresa'  || data.role === 'admin') {
   this.validado = true;
@@ -63,8 +64,7 @@ results(data) {
 aceptar(idO, idC, idRef) {
   if (idRef) {
     console.log(idRef);
-    idRef = 'email@email.com';
-    this.referalForm.patchValue({referalValue: this.email});
+    this.referalForm.patchValue({email: this.email});
     this.user.valorarReferal(JSON.stringify(this.referalForm.value))
     .subscribe(
       data => {console.log(data); /*window.location.reload();*/ },
