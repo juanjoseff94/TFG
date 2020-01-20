@@ -8,6 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ACTIVE_INDEX } from '@angular/core/src/render3/interfaces/container';
 import { ResourceLoader } from '@angular/compiler';
 
+
 @Component({
   selector: 'app-candidatos',
   templateUrl: './candidatos.component.html',
@@ -18,6 +19,7 @@ export class CandidatosComponent implements OnInit {
   id = '';
   nombre = '';
   datos: any[];
+  datosInc: any[];
   query: '';
   idCandidato: '';
   test = '5cee7d6da72c1a38587e36b0';
@@ -35,6 +37,8 @@ export class CandidatosComponent implements OnInit {
   referalForm: FormGroup = new FormGroup({
     email: new FormControl(null)
   });
+
+  public experienciaList = {entryExp: false, juniorExp: false, seniorExp: false, expertExp: false };
 
   constructor(private ofertas: OfertaService, private router: Router, private user: UserService,
               private candidaturaServ: CandidaturaService) {
@@ -56,9 +60,8 @@ if (!this.validado) {
 }
 }
 results(data) {
-  // console.log(data.idCandidato);
-  // console.log(this.id);
   this.datos = data;
+  this.datosInc = data;
 }
 
 aceptar(idO, idC, idRef) {
@@ -77,9 +80,22 @@ aceptar(idO, idC, idRef) {
   this.candidaturaForm.patchValue({estado: this.estado});
   this.candidaturaServ.aceptarCandidaturas(JSON.stringify(this.candidaturaForm.value))
     .subscribe(
-      data => {console.log(data); window.location.reload(); },
+      data => {console.log(data); /*window.location.reload(); */},
       error => console.error(error)
     );
+}
+
+filterChange() {
+  this.datos = this.datos.filter(x =>
+    (x.experiencia === 'entry' && this.experienciaList.entryExp)
+    || (x.experiencia === 'junior' && this.experienciaList.juniorExp)
+    || (x.experiencia === 'senior' && this.experienciaList.seniorExp)
+    || (x.experiencia === 'expert' && this.experienciaList.expertExp)
+    );
+  if (this.datos.length === 0 && !this.experienciaList.entryExp && !this.experienciaList.juniorExp
+    && !this.experienciaList.seniorExp && !this.experienciaList.expertExp) {
+    this.datos = this.datosInc;
+  }
 }
 
 rechazar(idO, idC) {

@@ -1,13 +1,28 @@
 <td>
-    <input [(ngModel)]="searchText" placeholder="Busqueda por puesto">
-    <a *ngFor="let p of datos | filter: searchText" class="list-group-item list-group-item-action flex-column align-items-start">
+    <input [(ngModel)]="searchText" placeholder="Puesto Actual o Skills">
+    <div>Filtrar por Experiencia:
+        <label>Entry</label>
+        <input [(ngModel)]="experienciaList.entryExp" type="checkbox" (ngModelChange)="filterChange()">
+        <label>Junior</label>
+        <input [(ngModel)]="experienciaList.juniorExp" type="checkbox" (ngModelChange)="filterChange()">
+        <label>Senior</label>
+        <input [(ngModel)]="experienciaList.seniorExp" type="checkbox" (ngModelChange)="filterChange()">
+        <label>Expert</label>
+        <input [(ngModel)]="experienciaList.expertExp" type="checkbox" (ngModelChange)="filterChange()">
+    </div>
+
+
+    <a *ngFor="let p of datos | filterGeneral: searchText" class="list-group-item list-group-item-action flex-column align-items-start">
+
         <div class="jumbotron">
             <h5>{{ p.nombre }}</h5>
             <li>Puesto Actual: {{ p.puestoActual }}</li>
             <li>Skills: {{ p.skills }}</li>
             <li>Experiencia: {{ p.experiencia }}</li>
             <li>Descripcion: {{ p.descripcion }}</li>
-            <button (click)="elegirCandidato(p.idUser, p.nombre)">Referir candidato</button>
+            <li>Teléfono: {{ p.telefono }}</li>
+            <li>Email: {{ p.email }}</li>
+            <button (click)="elegirCandidato(p.idUser, p.nombre, p.email, p.telefono, p.descripcion, p.experiencia, p.skills, p.puestoActual)">Referir candidato</button>
         </div>
     </a>
 </td>

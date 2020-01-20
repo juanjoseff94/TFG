@@ -22,18 +22,28 @@ export class CvReferalsComponent implements OnInit {
     idReferal: new FormControl(null),
     referalValue: new FormControl(null),
     descripcion: new FormControl(null),
+    descripcionOf: new FormControl(null),
     empresa: new FormControl(null),
     puesto: new FormControl(null),
+    puestoOf: new FormControl(null),
     salario: new FormControl(null),
+    puestoActual: new FormControl(null),
+    skills: new FormControl(null),
+    experiencia: new FormControl(null),
+    telefono: new FormControl(null),
+    email: new FormControl(null),
     fechaFin: new FormControl(null),
     estado: new FormControl(null)
   });
 
-  referalForm: FormGroup = new FormGroup({
+  referalForm2: FormGroup = new FormGroup({
     email: new FormControl(null)
   });
 
+  public experienciaList = {entryExp: false, juniorExp: false, seniorExp: false, expertExp: false };
+
   datos: any[];
+  datosInc: any[];
   validado: boolean;
   referal: string;
   email = '';
@@ -59,16 +69,34 @@ export class CvReferalsComponent implements OnInit {
     // console.log(this.referalCandForm);
   }
 
-  elegirCandidato(idCand: any, nombreCand: any) {
-    console.log(idCand);
-    console.log(this.referal);
+  filterChange() {
+    this.datos = this.datos.filter(x =>
+      (x.experiencia === 'entry' && this.experienciaList.entryExp)
+      || (x.experiencia === 'junior' && this.experienciaList.juniorExp)
+      || (x.experiencia === 'senior' && this.experienciaList.seniorExp)
+      || (x.experiencia === 'expert' && this.experienciaList.expertExp)
+      );
+    if (this.datos.length === 0 && !this.experienciaList.entryExp && !this.experienciaList.juniorExp
+      && !this.experienciaList.seniorExp && !this.experienciaList.expertExp) {
+      this.datos = this.datosInc;
+    }
+  }
+
+  elegirCandidato(idCand: any, nombreCand: any, emailCand: any, telefonoCand: any, descripcionCand: any,
+                  experienciaCand: any, skillsCand: any, puestoActual: any) {
+    console.log(nombreCand);
     this.referalCandForm.patchValue({idCandidato: idCand});
     this.referalCandForm.patchValue({nombreCandidato: nombreCand});
-    // this.referalCandForm.patchValue({referalValue: this.referal});
-    // console.log(this.referalCandForm);
+    this.referalCandForm.patchValue({email: emailCand});
+    this.referalCandForm.patchValue({telefono: telefonoCand});
+    this.referalCandForm.patchValue({descripcion: descripcionCand});
+    this.referalCandForm.patchValue({experiencia: experienciaCand});
+    this.referalCandForm.patchValue({skills: skillsCand});
+    this.referalCandForm.patchValue({puesto: puestoActual});
 
-    this.referalForm.patchValue({email: this.email});
-    this.user.contadorReferal(JSON.stringify(this.referalForm.value))
+
+    this.referalForm2.patchValue({email: this.email});
+    this.user.contadorReferal(JSON.stringify(this.referalForm2.value))
     .subscribe(
       data => {console.log(data); /*window.location.reload();*/ },
       error => console.error(error)
@@ -83,6 +111,7 @@ export class CvReferalsComponent implements OnInit {
 
   cvResults(data) {
     this.datos = data;
+    this.datosInc = data;
   }
 
   usuario(data) {

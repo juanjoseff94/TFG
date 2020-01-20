@@ -1,12 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filterPuesto'
+  name: 'filterGeneral'
 })
+export class FilterGeneralPipe implements PipeTransform {
 
-
-
-export class FilterPipe implements PipeTransform {
   transform(items: any[], searchText: string): any[] {
     if (!items) { return []; }
     if (!searchText) { return items; }
@@ -14,8 +12,10 @@ export class FilterPipe implements PipeTransform {
     searchText = searchText.toLowerCase();
     return items.filter( it => {
       // console.log(it);
-      if (it.puestoActual) {
+      if (it.puestoActual.toLowerCase().includes(searchText)) {
         return it.puestoActual.toLowerCase().includes(searchText);
+      } else if (it.skills) {
+        return it.skills.toLowerCase().includes(searchText);
       }
       return it.puesto.toLowerCase().includes(searchText);
     });

@@ -22,4 +22,12 @@ export class CvService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+
+  findCv(body: any) {
+    return this.http.post('http://127.0.0.1:3000/cvs/findCv', body, {
+      observe: 'body',
+      withCredentials: true,
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 }

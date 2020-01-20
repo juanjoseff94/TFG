@@ -21,6 +21,8 @@ import { CandidaturaFilterPipe } from './candidatura-filter.pipe';
 import { CandidatosComponent } from './pages/candidatos/candidatos.component';
 import { CandidatosFilterPipe } from './candidatos-filter.pipe';
 import { CvReferalsComponent } from './pages/cv-referals/cv-referals.component';
+import { ExperienciaFilterPipe } from './experiencia-filter.pipe';
+import { FilterGeneralPipe } from './filter-general.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { CvReferalsComponent } from './pages/cv-referals/cv-referals.component';
     CandidaturaFilterPipe,
     CandidatosComponent,
     CandidatosFilterPipe,
-    CvReferalsComponent
+    CvReferalsComponent,
+    ExperienciaFilterPipe,
+    FilterGeneralPipe
   ],
   imports: [
     BrowserModule,

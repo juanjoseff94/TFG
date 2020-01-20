@@ -52,18 +52,20 @@ async function valorarRef(req, res) {
     try {
         console.log('test');
         console.log(req.body.referalValue);
-        console.log(req.body.username);
+        console.log(req.body.email);
         // console.log(req.body.email);
         User.findOne({
-                username: req.body.username
+                email: req.body.email
             })
             .then((user) => {
+                console.log(user);
                 user.referalsAceptados = user.referalsAceptados + 1;
                 user.referalValue = (user.referalsAceptados / user.referalCount) * 105;
+                user.referalValue = (Math.round(user.referalValue * 100) / 100).toFixed(2);
                 if (user.referalValue > 100) {
                     user.referalValue = 100;
                 }
-                console.log(referalValue);
+                console.log(user.referalValue);
                 user
                     .save()
                     .then(() => {
@@ -81,14 +83,15 @@ async function contadorRef(req, res) {
     try {
         console.log('test');
         console.log(req.body.referalCount);
-        console.log(req.body.username);
+        console.log(req.body.email);
         // console.log(req.body.email);
         User.findOne({
-                username: req.body.username
+                email: req.body.email
             })
             .then((user) => {
                 user.referalCount = user.referalCount + 1;
                 user.referalValue = (user.referalsAceptados / user.referalCount) * 105;
+                user.referalValue = (Math.round(user.referalValue * 100) / 100).toFixed(2);
                 if (user.referalValue > 100) {
                     user.referalValue = 100;
                 }

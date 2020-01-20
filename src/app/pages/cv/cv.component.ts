@@ -24,6 +24,14 @@ export class CvComponent implements OnInit {
     experiencia: new FormControl(null, Validators.required),
     email: new FormControl(null)
   });
+
+  experiencia = [
+    {id: 1, name: 'entry'},
+    {id: 2, name: 'junior'},
+    {id: 3, name: 'senior'},
+    {id: 4, name: 'expert'}
+  ];
+
   constructor(private router: Router, private cvService: CvService, private user: UserService) {
     this.user.user()
     .subscribe(

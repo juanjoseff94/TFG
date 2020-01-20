@@ -38,7 +38,8 @@ export class CandidaturasComponent implements OnInit {
 
 
 usuario(data) {
-this.id = data._id;
+this.id = data.email;
+console.log(this.id);
 this.nombre = data.username;
 this.validado = false;
 if (data.role === 'usuario'  || data.role === 'admin') {

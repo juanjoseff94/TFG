@@ -17,6 +17,22 @@ router.get('/getCvs', async(req, res) => {
 
 });
 
+router.post('/findCv', async(req, res) => {
+    try {
+        Cv.findOne({
+                idUser: req.body.idUser
+            })
+            .then((cv) => {
+                res.jsonp({ cv }); // devolvemos el objeto usuario mediante Node
+            });
+        // res.json(cv);
+    } catch (e) {
+        console.log(e);
+    }
+
+});
+
+
 async function addToDB(req, res) {
 
     var cv = new Cv({

@@ -1,11 +1,27 @@
 <td>
-    <input [(ngModel)]="searchText" placeholder="Busqueda por empresa">
-    <a *ngFor="let p of datos| candidatosFilter: id" class="list-group-item list-group-item-action flex-column align-items-start">
+    <input [(ngModel)]="searchText" placeholder="Puesto actual">
+    <div>Filtrar por Experiencia:
+        <label>Entry</label>
+        <input [(ngModel)]="experienciaList.entryExp" type="checkbox" (ngModelChange)="filterChange()">
+        <label>Junior</label>
+        <input [(ngModel)]="experienciaList.juniorExp" type="checkbox" (ngModelChange)="filterChange()">
+        <label>Senior</label>
+        <input [(ngModel)]="experienciaList.seniorExp" type="checkbox" (ngModelChange)="filterChange()">
+        <label>Expert</label>
+        <input [(ngModel)]="experienciaList.expertExp" type="checkbox" (ngModelChange)="filterChange()">
+    </div>
+
+    <a *ngFor="let p of datos| filterPuesto: searchText" class="list-group-item list-group-item-action flex-column align-items-start">
         <div>
-            <h5>{{ p.nombreCandidato }}</h5>
-            <li>Puesto: {{ p.puesto }}</li>
-            <li>Salario: {{ p.salario }}</li>
+            <h5>{{ p.puestoOf }}</h5>
+            <li>Nombre: {{ p.nombreCandidato }}</li>
+            <li>Valor Referencia: {{ p.referalValue }}</li>
+            <li>Puesto Actual: {{ p.puesto }}</li>
+            <li>Experiencia: {{ p.experiencia }}</li>
+            <li>Skills: {{ p.skills }}</li>
             <li>Descripcion: {{ p.descripcion }}</li>
+            <li>Teléfono de Contacto: {{ p.telefono }}</li>
+            <li>Email: {{ p.email }}</li>
             <li>Fecha final: {{ p.fechaFin }}</li>
             <li>Estado: {{ p.estado }}</li>
             <button (click)="aceptar(p.idOferta, p.idCandidato, p.idReferal)">Aceptar candidato</button>
