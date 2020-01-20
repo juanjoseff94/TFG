@@ -16,19 +16,28 @@ async function addToDB(req, res) {
 
     var user = new User({
         email: req.body.email,
-        username: req.body.username,
         role: req.body.role,
         referalValue: req.body.referalValue,
+        referalsAceptados: req.body.referalValue,
+        referalCount: req.body.referalValue,
         password: User.hashPassword(req.body.password),
         creation_dt: Date.now()
     });
 
-    try {
-        doc = await user.save();
-        return res.status(201).json(doc);
-    } catch (err) {
-        return res.status(501).json(err);
-    }
+    User.countDocuments({ email: req.body.email }, function(err, count) {
+        if (count > 0) {
+            console.log("Duplicado");
+            return;
+        } else {
+            try {
+                doc = user.save();
+                return res.status(201).json(doc);
+            } catch (err) {
+                return res.status(501).json(err);
+            }
+        }
+    });
+
 }
 
 router.post('/valorarReferal', function(req, res, next) {
@@ -43,19 +52,22 @@ async function valorarRef(req, res) {
     try {
         console.log('test');
         console.log(req.body.referalValue);
-        console.log(req.body.email);
+        console.log(req.body.username);
         // console.log(req.body.email);
         User.findOne({
-                email: req.body.email
+                username: req.body.username
             })
             .then((user) => {
                 user.referalsAceptados = user.referalsAceptados + 1;
-                user.referalValue = (user.referalsAceptados / user.referalCount) * 100;
+                user.referalValue = (user.referalsAceptados / user.referalCount) * 105;
+                if (user.referalValue > 100) {
+                    user.referalValue = 100;
+                }
                 console.log(referalValue);
                 user
                     .save()
                     .then(() => {
-                        res.jsonp({ user }); // enviamos la boleta de vuelta
+                        res.jsonp({ user }); // devolvemos el objeto usuario mediante Node
                     });
             });
     } catch (err) {
@@ -69,10 +81,10 @@ async function contadorRef(req, res) {
     try {
         console.log('test');
         console.log(req.body.referalCount);
-        console.log(req.body.email);
+        console.log(req.body.username);
         // console.log(req.body.email);
         User.findOne({
-                email: req.body.email
+                username: req.body.username
             })
             .then((user) => {
                 user.referalCount = user.referalCount + 1;
@@ -84,7 +96,7 @@ async function contadorRef(req, res) {
                 user
                     .save()
                     .then(() => {
-                        res.jsonp({ user }); // enviamos la boleta de vuelta
+                        res.jsonp({ user }); // devolvemos el objeto usuario mediante Node
                     });
             });
     } catch (err) {

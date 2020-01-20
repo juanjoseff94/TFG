@@ -12,14 +12,17 @@ import { CvService } from '../../cv.service';
 export class CvComponent implements OnInit {
 
   id = '';
+  username = '';
   validado: boolean;
   ofertarForm: FormGroup = new FormGroup({
     idUser: new FormControl(null),
     nombre: new FormControl(null, Validators.required),
+    telContacto: new FormControl(null, Validators.required),
     puestoActual: new FormControl(null, Validators.required),
     descripcion: new FormControl(null, Validators.required),
     skills: new FormControl(null, Validators.required),
-    experiencia: new FormControl(null, Validators.required)
+    experiencia: new FormControl(null, Validators.required),
+    email: new FormControl(null)
   });
   constructor(private router: Router, private cvService: CvService, private user: UserService) {
     this.user.user()
@@ -31,6 +34,7 @@ export class CvComponent implements OnInit {
 
   getId(data) {
     this.id = data._id;
+    this.username = data.email;
     this.validado = false;
     if (data.role === 'usuario'  || data.role === 'admin') {
       this.validado = true;
@@ -48,6 +52,7 @@ export class CvComponent implements OnInit {
       console.log('Invalid Form'); return;
     }
     this.ofertarForm.patchValue({idUser: this.id});
+    this.ofertarForm.patchValue({email: this.username});
 
     this.cvService.cv(JSON.stringify(this.ofertarForm.value))
     .subscribe(

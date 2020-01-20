@@ -2,10 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Cv = require('../models/cv');
 var passport = require('passport');
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
 
 router.post('/cvs', function(req, res, next) {
     addToDB(req, res);
@@ -29,7 +25,9 @@ async function addToDB(req, res) {
         puestoActual: req.body.puestoActual,
         descripcion: req.body.descripcion,
         skills: req.body.skills,
-        experiencia: req.body.experiencia
+        experiencia: req.body.experiencia,
+        telefono: req.body.telContacto,
+        email: req.body.email
     });
 
     try {

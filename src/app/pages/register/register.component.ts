@@ -11,8 +11,7 @@ import { UserService } from '../../user.service';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.email, Validators.required]),
-    username: new FormControl(null, Validators.required),
+    email: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
     role: new FormControl(null, Validators.required),
     referalValue: new FormControl(null),

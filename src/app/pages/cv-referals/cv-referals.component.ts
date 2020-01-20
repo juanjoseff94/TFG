@@ -76,7 +76,7 @@ export class CvReferalsComponent implements OnInit {
 
     this.candidaturaServ.apuntarse(JSON.stringify(this.referalCandForm.value))
     .subscribe(
-      data => {console.log(data); this.router.navigate(['/home']); },
+      data => {console.log(data); },
       error => console.error(error)
     );
   }
