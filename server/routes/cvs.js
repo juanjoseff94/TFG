@@ -46,6 +46,13 @@ async function addToDB(req, res) {
         email: req.body.email
     });
 
+    /*Cv.findOneAndDelete({
+        email: req.body.email
+    });*/
+    Cv.findOneAndRemove({ email: req.body.email }, (err, result) => {
+        if (err) return res.send(500, err);
+    });
+
     try {
         doc = await cv.save();
         return res.status(201).json(doc);
